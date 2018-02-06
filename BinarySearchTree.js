@@ -35,11 +35,27 @@ class BinarySearchTree {
 	dfs(cb, node=this.root) {
     // Write an algorithm using depth first search that will take in a callback function and call it while passing each nodes data starting down the left path
 		// Expected order: '25, 15, 17, 197, 97, 9997'
+		if (!node) return;
+		cb(node.data)
+		this.dfs(cb, node.left)
+		this.dfs(cb, node.right)
 	}
 
 	bfs(cb, node=this.root) {
     // Write an algorithm using breadth first search that takes in a callback function and calls it for every node
     // Expected order: 25, 15, 197, 17, 97, 9997
+		let arr = [node];
+		while (arr.length > 0) {
+			let curr = arr.shift();
+			cb(curr.data);
+
+			if (curr.left) {
+				arr.push(curr.left);
+			}
+			if (curr.right) {
+				arr.push(curr.right);
+			}
+		}
 	}
 }
 
